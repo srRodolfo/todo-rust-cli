@@ -35,7 +35,7 @@ fn main() {
         println!("3 - Concluir/Desmarcar tarefas");
         println!("4 - Remover tarefa");
         println!("5 - Sair");
-        println!("> ");
+        print!("> ");
         io::stdout().flush().unwrap();
 
         let mut input = String::new();
@@ -46,6 +46,8 @@ fn main() {
         match input.trim() {
             "1" => {
                 println!("Digite a descrição da tarefa:");
+                print!("> ");
+                io::stdout().flush().unwrap();
                 let mut desc = String::new();
                 io::stdin().read_line(&mut desc).unwrap();
 
@@ -60,7 +62,7 @@ fn main() {
                 save_tasks(&tasks);
             }
             "2" => {
-                println!("--- Suas tarefas ---");
+                println!("\n--- Suas tarefas ---");
                 if tasks.is_empty() {
                     println!("Nenhuma tarefa encontrada!");
                 } else {
@@ -76,6 +78,8 @@ fn main() {
                     println!("Nenhuma tarefa para concluir!");
                 } else {
                     println!("\nDigite o ID da tarefa que deseja marcar/demarcar:");
+                    print!("> ");
+                    io::stdout().flush().unwrap();
                     let mut id_input = String::new();
                     io::stdin().read_line(&mut id_input).unwrap();
 
@@ -86,6 +90,8 @@ fn main() {
                                     "Tarefa {} já está concluída. Deseja desmarcar? (s/n)",
                                     id
                                 );
+                                print!("> ");
+                                io::stdout().flush().unwrap();
                                 let mut response = String::new();
                                 io::stdin().read_line(&mut response).unwrap();
                                 if response.trim().eq_ignore_ascii_case("s") {
@@ -112,6 +118,8 @@ fn main() {
                     println!("Nenhuma tarefa para removar!");
                 } else {
                     println!("\nDigite o Id da tarefa que deseja remover:");
+                    print!("> ");
+                    io::stdout().flush().unwrap();
                     let mut id_input = String::new();
                     io::stdin().read_line(&mut id_input).unwrap();
 
