@@ -30,7 +30,7 @@ fn main() {
 
     loop {
         println!("\nEscolha uma opção:");
-        println!("1 - Adicionar tarfa");
+        println!("1 - Adicionar tarefa");
         println!("2 - Listar tarefas");
         println!("3 - Concluir/Desmarcar tarefas");
         println!("4 - Remover tarefa");
