@@ -24,18 +24,18 @@ fn load_tasks() -> Vec<Task> {
 }
 
 fn main() {
-    println!("=== To-Do CLI ===");
+    println!("\n=== To-Do CLI ===");
 
     let mut tasks: Vec<Task> = load_tasks();
 
     loop {
-        println!("\nEscolha uma opção:");
+        println!("\n--- Opções Disponíveis ---");
         println!("1 - Adicionar tarefa");
         println!("2 - Listar tarefas");
         println!("3 - Concluir/Desmarcar tarefas");
         println!("4 - Remover tarefa");
-        println!("5 - Sair");
-        print!("> ");
+        println!("5 - Sair\n");
+        print!("Informe uma opção: ");
         io::stdout().flush().unwrap();
 
         let mut input = String::new();
@@ -45,8 +45,7 @@ fn main() {
 
         match input.trim() {
             "1" => {
-                println!("Digite a descrição da tarefa:");
-                print!("> ");
+                print!("Digite a descrição da tarefa: ");
                 io::stdout().flush().unwrap();
                 let mut desc = String::new();
                 io::stdin().read_line(&mut desc).unwrap();
@@ -71,14 +70,12 @@ fn main() {
                         println!("{} {} - {}", t.id, status, t.description);
                     }
                 }
-                println!("--- *** ---");
             }
             "3" => {
                 if tasks.is_empty() {
                     println!("Nenhuma tarefa para concluir!");
                 } else {
-                    println!("\nDigite o ID da tarefa que deseja marcar/demarcar:");
-                    print!("> ");
+                    print!("\nDigite o ID da tarefa que deseja marcar/demarcar: ");
                     io::stdout().flush().unwrap();
                     let mut id_input = String::new();
                     io::stdin().read_line(&mut id_input).unwrap();
@@ -86,11 +83,7 @@ fn main() {
                     if let Ok(id) = id_input.trim().parse::<usize>() {
                         if let Some(task) = tasks.iter_mut().find(|t| t.id == id) {
                             if task.done {
-                                println!(
-                                    "Tarefa {} já está concluída. Deseja desmarcar? (s/n)",
-                                    id
-                                );
-                                print!("> ");
+                                print!("Tarefa {} está concluída. Deseja desmarcar? (s/n): ", id);
                                 io::stdout().flush().unwrap();
                                 let mut response = String::new();
                                 io::stdin().read_line(&mut response).unwrap();
@@ -117,8 +110,7 @@ fn main() {
                 if tasks.is_empty() {
                     println!("Nenhuma tarefa para removar!");
                 } else {
-                    println!("\nDigite o Id da tarefa que deseja remover:");
-                    print!("> ");
+                    print!("\nDigite o Id da tarefa que deseja remover: ");
                     io::stdout().flush().unwrap();
                     let mut id_input = String::new();
                     io::stdin().read_line(&mut id_input).unwrap();
